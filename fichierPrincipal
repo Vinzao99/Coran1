@@ -1,0 +1,101 @@
+import 'package:flutter/material.dart';
+import 'dart:math';
+
+class QuranicProverb {
+  String proverb;
+  String reference;
+
+  QuranicProverb({required this.proverb, required this.reference});
+}
+class QuranicProverbGenerator {
+  List<QuranicProverb> _proverbs = [
+    QuranicProverb(
+        proverb: "Par la sagesse et la bonne exhortation appelle (les gens) au sentier de ton Seigneur. Et discute avec eux de la meilleure façon.",
+        reference: "Coran 16:125"),
+    QuranicProverb(
+        proverb: "Et ne poursuis pas ce dont tu n'as aucune connaissance. L'ouïe, la vue et le cœur : sur tout cela, en vérité, on sera interrogé.",
+        reference: "Coran 17:36"),
+    QuranicProverb(
+        proverb: "Et dis à Mes serviteurs d'exprimer les meilleures paroles, car le Diable sème la discorde parmi eux. Le Diable est certes, pour l'homme, un ennemi déclaré.",
+        reference: "Coran 17:53"),
+    QuranicProverb(
+        proverb: "Dieu ne charge une âme que selon sa capacité." ,
+        reference: "(Coran 2:286"),
+    QuranicProverb(
+        proverb: "Certes, avec la difficulté, vient la facilité." ,
+        reference: "(Coran 2:256"),
+
+    QuranicProverb(
+        proverb: "La patience est requise sauf pour ceux qui ont une position de faiblesse." ,
+        reference: "(Coran 4:29"),
+    QuranicProverb(
+        proverb: "Invoquez-Moi, Je vous répondrai." ,
+        reference: "(Coran 40:60"),
+    QuranicProverb(
+        proverb: "Dieu ne change pas l'état d'un peuple tant que les [individus qui le composent] ne changent pas ce qui est en eux-mêmes." ,
+        reference: "(Coran 8:53"),
+    QuranicProverb(
+        proverb: "Et quiconque met sa confiance en Dieu, Il lui suffit." ,
+        reference: "(Coran 65:3"),
+
+    // Ajoutez d'autres proverbes coraniques ici
+  ];
+
+  QuranicProverb generateRandomProverb() {
+    final random = Random();
+    final index = random.nextInt(_proverbs.length);
+    return _proverbs[index];
+  }
+}
+
+void main() {
+  runApp(QuranicProverbsApp());
+}
+
+class QuranicProverbsApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final proverbGenerator = QuranicProverbGenerator();
+    final randomProverb = proverbGenerator.generateRandomProverb();
+
+    return MaterialApp(
+      title: 'Proverbes Coraniques',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Proverbes Coraniques'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'Proverbe coranique:',
+                style: TextStyle(fontSize: 24),
+              ),
+              SizedBox(height: 10),
+              Text(
+                randomProverb.proverb,
+                style: TextStyle(fontSize: 18),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 10),
+              Text(
+                'Référence:',
+                style: TextStyle(fontSize: 24),
+              ),
+              SizedBox(height: 10),
+              Text(
+                randomProverb.reference,
+                style: TextStyle(fontSize: 18),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
